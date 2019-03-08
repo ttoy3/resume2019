@@ -47,18 +47,19 @@ var vol=0;
 var aud=document.getElementById('music');
 var pct=document.getElementById('percent');
 document.getElementById('speaker').onclick=function(e){
-    var spkr=document.querySelector('#speaker i')
     var icon='off down up up'.split(' ');
     vol=(vol+1)%icon.length;
+    var vv=.334*vol>1?1:.334*vol
+    var spkr=document.querySelector('#speaker i');
     spkr.setAttribute('class','fa fa-volume-' + icon[vol]);
-    aud.volume=.334*vol>1?1:.334*vol;
+    pct.innerText= Math.floor(vv*100) + '%';
+    pct.style.display='unset';
+    aud.volume=vv;
     if (vol==1) {
         aud.play();
     } else if (vol==0) {
         aud.pause();
     }
-    pct.innerText= Math.floor(aud.volume*100) + '%';
-    pct.style.display='unset';
     setTimeout(function(){
         pct.style.display='none';
     },500);
