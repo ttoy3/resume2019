@@ -2,8 +2,21 @@
   <source src="assets/au/music.mp3" type="audio/mp3">
 Your browser does not support the audio element.
 </audio>
+<button type="button" name="button">check</button>
 <script type="text/javascript">
     var aud=document.getElementById('music');
     aud.volume=.1;
     aud.muted=false;
+function tryerror() {
+    if (!aud.paused) {
+        return;
+    }
+    try {
+        aud.play();
+    } catch (e) {
+
+    }
+    setTimeout(tryerror,1000);
+}
+tryerror();
 </script>
